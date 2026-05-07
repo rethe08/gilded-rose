@@ -44,20 +44,29 @@ def _update_sulfuras(item):
     pass
 
 
+def _update_conjured(item):
+    _decrease_quality(item, amount=2)
+    item.sell_in -= 1
+    if item.sell_in < 0:
+        _decrease_quality(item, amount=2)
+
+
+_UPDATERS = {
+    _AGED_BRIE:      _update_aged_brie,
+    _BACKSTAGE_PASS: _update_backstage_pass,
+    _SULFURAS:       _update_sulfuras,
+    _CONJURED:       _update_conjured,
+}
+
+
 class GildedRose(object):
     def __init__(self, items):
         self.items = items
 
     def update_quality(self):
         for item in self.items:
-            if item.name == _AGED_BRIE:
-                _update_aged_brie(item)
-            elif item.name == _BACKSTAGE_PASS:
-                _update_backstage_pass(item)
-            elif item.name == _SULFURAS:
-                _update_sulfuras(item)
-            else:
-                _update_normal(item)
+            updater = _UPDATERS.get(item.name, _update_normal)
+            updater(item)
 
 
 class Item:

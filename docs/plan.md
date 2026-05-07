@@ -184,17 +184,17 @@ def update_quality(self):
 |------|------|
 | 설계 문서 작성 (`phase2_method_refactoring.md`) | ✅ |
 | 설계 문서 검토 및 승인 | ✅ |
-| Phase 2: 매직 스트링 상수화 + 표현 정리 | ⬜ |
-| Phase 3: 헬퍼 함수 + 아이템별 함수 분리 | ⬜ |
-| 전체 Unit Test GREEN 확인 | ⬜ |
-| PR → main 머지 | ⬜ |
+| Phase 2: 매직 스트링 상수화 + 표현 정리 | ✅ |
+| Phase 3: 헬퍼 함수 + 아이템별 함수 분리 | ✅ |
+| 전체 Unit Test GREEN 확인 | ✅ |
+| PR → main 머지 | ✅ |
 
 ### Branch 3 — `branch/3-class-refactoring`
 
 | 항목 | 상태 |
 |------|------|
-| 설계 문서 작성 (`phase3_class_refactoring.md`) | ⬜ |
-| 설계 문서 검토 및 승인 | ⬜ |
+| 설계 문서 작성 (`phase3_class_refactoring.md`) | ✅ |
+| 설계 문서 검토 및 승인 | ✅ |
 | Phase 4: Strategy 패턴으로 OCP 구조화 | ⬜ |
 | Phase 5: Conjured 테스트 + 구현 | ⬜ |
 | 전체 Unit Test GREEN 확인 | ⬜ |
