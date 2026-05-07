@@ -4,6 +4,7 @@ from gilded_rose import Item, GildedRose
 AGED_BRIE = "Aged Brie"
 BACKSTAGE_PASS = "Backstage passes to a TAFKAL80ETC concert"
 SULFURAS = "Sulfuras, Hand of Ragnaros"
+CONJURED = "Conjured Mana Cake"
 
 
 def run_update(name, sell_in, quality, days=1):
@@ -125,4 +126,26 @@ class TestEdgeCases:
 
     def test_normal_item_quality_0_stays_0_after_expiry(self):
         item = run_update("Normal Item", sell_in=0, quality=0)
+        assert item.quality == 0
+
+
+class TestConjured:
+    def test_quality_decreases_by_2(self):
+        item = run_update(CONJURED, sell_in=5, quality=10)
+        assert item.quality == 8
+
+    def test_sell_in_decreases(self):
+        item = run_update(CONJURED, sell_in=5, quality=10)
+        assert item.sell_in == 4
+
+    def test_quality_decreases_by_4_after_sell_in_expires(self):
+        item = run_update(CONJURED, sell_in=0, quality=10)
+        assert item.quality == 6
+
+    def test_quality_never_goes_below_zero(self):
+        item = run_update(CONJURED, sell_in=5, quality=1)
+        assert item.quality == 0
+
+    def test_quality_zero_stays_zero_after_expiry(self):
+        item = run_update(CONJURED, sell_in=0, quality=0)
         assert item.quality == 0
